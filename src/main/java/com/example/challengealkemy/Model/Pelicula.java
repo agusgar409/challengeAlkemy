@@ -1,5 +1,10 @@
 package com.example.challengealkemy.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,57 +13,23 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "Peliculas")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter @Setter
 public class Pelicula {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public String getTitulo() {
-        return titulo;
-    }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    public ArrayList<Long> getPersonajesAsociados() {
-        return personajesAsociados;
-    }
-
-    public void setPersonajesAsociados(ArrayList<Long> personajesAsociados) {
-        this.personajesAsociados = personajesAsociados;
-    }
-
-    @Column(name = "Titulo", nullable = false)
+    @Column(name = "titulo", nullable = false)
     private String titulo;
-    @Column(name = "FechaCreacion", nullable = false)
+    @Column(name = "fecha_creacion", nullable = false)
     private String fechaCreacion;
-    @Column(name = "Calificacion", nullable = false)
+    @Column(name = "calificacion", nullable = false)
     private int calificacion;
-    @Column(name = "PersonajesAsociados", nullable = false)
+    @Column(name = "personajes_asociados", nullable = false)
     private ArrayList<Long> personajesAsociados;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "imagen", nullable = false)
+    private String imagen;
 }

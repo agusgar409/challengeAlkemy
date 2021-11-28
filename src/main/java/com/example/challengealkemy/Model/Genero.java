@@ -1,5 +1,9 @@
 package com.example.challengealkemy.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Column;
@@ -10,6 +14,9 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "Generos")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter @Setter
 public class Genero {
     @Id
     @Column(name = "id", nullable = false)
@@ -17,30 +24,7 @@ public class Genero {
     @Column(name = "nombre", nullable = false)
     private String nombre;
     //imagen
-    @Column(name = "peliculasRelacionadas", nullable = false)
+    @Column(name = "peliculas_relacionadas", nullable = false)
     private ArrayList<Long> peliculasRelacionadas;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public ArrayList<Long> getPeliculasRelacionadas() {
-        return peliculasRelacionadas;
-    }
-
-    public void setPeliculasRelacionadas(ArrayList<Long> peliculasRelacionadas) {
-        this.peliculasRelacionadas = peliculasRelacionadas;
-    }
 }

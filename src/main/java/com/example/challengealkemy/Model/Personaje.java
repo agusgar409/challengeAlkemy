@@ -1,6 +1,12 @@
 package com.example.challengealkemy.Model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,42 +15,10 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "Personajes")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter @Setter
 public class Personaje {
-
-    public Personaje() {
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public Double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-
-    public String getHistoria() {
-        return historia;
-    }
-
-    public void setHistoria(String historia) {
-        this.historia = historia;
-    }
 
 
     @Id
@@ -58,22 +32,10 @@ public class Personaje {
     private Double peso;
     @Column(name = "historia", nullable = false)
     private String historia;
-    @Column(name = "peliculasAsociadas", nullable = false)
+    @Column(name = "peliculas_asociadas", nullable = false)
     private ArrayList<Long> peliculasAsociadas;
+    @Column(name = "imagen", nullable = false)
+    private String imagen;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ArrayList<Long> getPeliculasAsociadas() {
-        return peliculasAsociadas;
-    }
-
-    public void setPeliculasAsociadas(ArrayList<Long> peliculasAsociadas) {
-        this.peliculasAsociadas = peliculasAsociadas;
-    }
 }

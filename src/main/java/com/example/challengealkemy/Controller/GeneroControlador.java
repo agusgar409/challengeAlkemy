@@ -3,10 +3,11 @@ package com.example.challengealkemy.Controller;
 import com.example.challengealkemy.Model.Genero;
 import com.example.challengealkemy.Servicio.GeneroServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.ArrayList;
+
+
 @RestController
 @RequestMapping("/genero")
 public class GeneroControlador {
@@ -14,18 +15,14 @@ public class GeneroControlador {
     @Autowired
     GeneroServicio generoServicio;
 
-    @GetMapping("/saludo")
-    public String saludar(){
-
-        return "hola";
-
+    @GetMapping()
+    public ArrayList<Genero> buscarGeneros(){
+        return generoServicio.devolverGenerosPelicula();
     }
 
-    @GetMapping(path = "/genero")
-    public String nuevoGenero(){
-
-        return "tuMadreLaGorda";
-
+    @PostMapping()
+    public void crearGnero(Genero genero){
+        generoServicio.agregarNuevoGenero(genero);
     }
 
 }
