@@ -1,4 +1,4 @@
-package com.example.challengealkemy.Servicio;
+/*package com.example.challengealkemy.Servicio;
 
 
 import com.example.challengealkemy.Model.Personaje;
@@ -13,6 +13,10 @@ public class PersonajeServicio {
 
     @Autowired
     PersonajeRepositoryJPA personajeJPA;
+
+    public List<Personaje> findAll(){
+        return personajeJPA.findAll();
+    }
 
     public Personaje obtenerPorNombre(String nombre) {
       return personajeJPA.getByName(nombre);
@@ -45,4 +49,4 @@ public class PersonajeServicio {
     public ArrayList<Personaje> obtenerPersonajes() {
         return (ArrayList<Personaje>) personajeJPA.findAll();
     }
-}
+}*/

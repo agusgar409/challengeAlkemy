@@ -1,4 +1,4 @@
-package com.example.challengealkemy.Controller;
+/*package com.example.challengealkemy.Controller;
 
 import com.example.challengealkemy.Model.Genero;
 import com.example.challengealkemy.Servicio.GeneroServicio;
@@ -25,4 +25,4 @@ public class GeneroControlador {
         generoServicio.agregarNuevoGenero(genero);
     }
 
-}
+}*/

@@ -1,4 +1,4 @@
-package com.example.challengealkemy.Servicio;
+/*package com.example.challengealkemy.Servicio;
 
 import com.example.challengealkemy.Model.Genero;
 import com.example.challengealkemy.Model.Personaje;
@@ -21,4 +21,4 @@ public class GeneroServicio {
     public ArrayList<Genero> devolverGenerosPelicula() {
         return (ArrayList<Genero>) generoRepository.findAll();
     }
-}
+}*/

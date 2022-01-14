@@ -1,10 +1,9 @@
-package com.example.challengealkemy.Model;
+package com.example.challengealkemy.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,11 +19,11 @@ import java.util.ArrayList;
 public class Genero {
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
     @Column(name = "nombre", nullable = false)
     private String nombre;
     //imagen
     @Column(name = "peliculas_relacionadas", nullable = false)
-    private ArrayList<Long> peliculasRelacionadas;
+    private ArrayList<Integer> peliculasRelacionadas;
 
 }

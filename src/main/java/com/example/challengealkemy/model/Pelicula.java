@@ -1,4 +1,4 @@
-package com.example.challengealkemy.Model;
+package com.example.challengealkemy.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,19 +17,21 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Getter @Setter
 public class Pelicula {
-    @Id
+
     @Column(name = "id", nullable = false)
-    private Long id;
+    @Id
+    private Integer id;
 
 
-    @Column(name = "titulo", nullable = false)
-    private String titulo;
-    @Column(name = "fecha_creacion", nullable = false)
+    @Column(name = "title", nullable = false)
+    private String title;
+    //@Column(name = "fecha_creacion", nullable = false)
     private String fechaCreacion;
-    @Column(name = "calificacion", nullable = false)
+    //@Column(name = "calificacion", nullable = false)
     private int calificacion;
-    @Column(name = "personajes_asociados", nullable = false)
-    private ArrayList<Long> personajesAsociados;
-    @Column(name = "imagen", nullable = false)
+    //@Column(name = "personajes_asociados", nullable = false)
+    private ArrayList<Integer> personajesAsociados;
+    //@Column(name = "imagen", nullable = false)
     private String imagen;
+
 }

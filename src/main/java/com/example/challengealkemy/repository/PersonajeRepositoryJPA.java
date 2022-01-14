@@ -1,4 +1,4 @@
-package com.example.challengealkemy.Repository;
+/*package com.example.challengealkemy.Repository;
 
 import com.example.challengealkemy.Model.Personaje;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +15,4 @@ public interface PersonajeRepositoryJPA extends JpaRepository<Personaje,String> 
     Personaje getByAge(Integer edad);
 
     Personaje getByIdMovie(Integer idMovie);
-}
+}*/

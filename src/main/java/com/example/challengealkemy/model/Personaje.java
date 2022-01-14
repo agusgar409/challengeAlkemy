@@ -1,11 +1,10 @@
-package com.example.challengealkemy.Model;
+package com.example.challengealkemy.model;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,18 +22,18 @@ public class Personaje {
 
     @Id
     @Column(name = "id", nullable = false)
-    private Long id;
-    @Column(name = "nombre", nullable = false)
+    private Integer id;
+    //@Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(name = "edad", nullable = false)
+    //@Column(name = "edad", nullable = false)
     private int edad;
-    @Column(name = "peso", nullable = false)
+    //@Column(name = "peso", nullable = false)
     private Double peso;
-    @Column(name = "historia", nullable = false)
+    //@Column(name = "historia", nullable = false)
     private String historia;
-    @Column(name = "peliculas_asociadas", nullable = false)
-    private ArrayList<Long> peliculasAsociadas;
-    @Column(name = "imagen", nullable = false)
+    //@Column(name = "peliculas_asociadas", nullable = false)
+    private ArrayList<Integer> peliculasAsociadas;
+    //@Column(name = "imagen", nullable = false)
     private String imagen;
 
 
