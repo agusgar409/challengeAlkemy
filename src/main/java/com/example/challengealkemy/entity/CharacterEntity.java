@@ -18,18 +18,18 @@ import java.util.List;
 public class CharacterEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    private String nombre;
+    private String name;
 
-    private int edad;
+    private int age;
 
-    private Double peso;
+    private Double heigt;
 
-    private String historia;
+    private String history;
 
-    private String imagen;
+    private String image;
 
     @ManyToMany(mappedBy = "characters")
     private List<MovieEntity> movies = new ArrayList<>();

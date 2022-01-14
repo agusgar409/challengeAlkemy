@@ -19,7 +19,7 @@ import java.util.List;
 public class MovieEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String image;
@@ -30,20 +30,17 @@ public class MovieEntity {
     @DateTimeFormat(pattern = "dd/mm/yyyy")
     private LocalDate creationDate;
 
-    private int calification;
+    private Long calification;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "genre_id", updatable = false, insertable = false)
-    private GenreEntity genre;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "genre_id")
+    private GenreEntity genreId;
 
-    /*@Column(name = "genre_id", nullable = false)
-    private Integer genreId;*/ //para actualizar o guarda DTO
-
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.ALL})
     @JoinTable(
-            name = "fk_movie_character" ,
-            joinColumns = @JoinColumn(name = "movie"),
-            inverseJoinColumns = @JoinColumn(name = "character")
+            name = "movie_character",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private List<CharacterEntity> characters = new ArrayList<>();
 }
