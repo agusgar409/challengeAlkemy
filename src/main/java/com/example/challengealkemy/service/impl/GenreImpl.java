@@ -1,6 +1,8 @@
 package com.example.challengealkemy.service.impl;
 
+import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
+import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.GenreEntity;
 import com.example.challengealkemy.mapper.GenreMapper;
 import com.example.challengealkemy.repository.GenreRepository;
@@ -31,5 +33,16 @@ public class GenreImpl implements GenreService {
         List<GenreEntity> entities = genreRepository.findAll();
         List<GenreDTO> dtos = genreMapper.genreEntityList2DtoList(entities);
         return dtos;
+    }
+
+
+    public void deleteGenre(Integer id) {
+        genreRepository.deleteById(id);
+    }
+
+    public GenreDTO getGenre(Integer id) {
+        GenreEntity genreEntity = genreRepository.findById(id).get();
+        GenreDTO genreDTOS = genreMapper.genreEntity2Dto(genreEntity);
+        return genreDTOS;
     }
 }

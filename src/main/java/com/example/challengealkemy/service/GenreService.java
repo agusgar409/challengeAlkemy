@@ -10,4 +10,9 @@ public interface GenreService {
     GenreDTO save(GenreDTO genreDTO);
 
     List<GenreDTO> getAll();
+
+    void deleteGenre(Integer id);
+
+    GenreDTO getGenre(Integer id);
+
 }

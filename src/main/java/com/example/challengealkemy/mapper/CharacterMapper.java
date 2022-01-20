@@ -1,19 +1,14 @@
 package com.example.challengealkemy.mapper;
 
 import com.example.challengealkemy.dto.CharacterDTO;
-import com.example.challengealkemy.dto.CharacterDetailsDTO;
-import com.example.challengealkemy.dto.GenreDTO;
 import com.example.challengealkemy.entity.CharacterEntity;
-import com.example.challengealkemy.entity.GenreEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CharacterMapper {
-
 
     public List<CharacterDTO> characterEntityList2DtoList(List<CharacterEntity> characterEntities) {
         List<CharacterDTO> dtos = new ArrayList<>();
@@ -28,6 +23,10 @@ public class CharacterMapper {
         characterDTO.setId(actualEntity.getId());
         characterDTO.setName(actualEntity.getName());
         characterDTO.setImage(actualEntity.getImage());
+        characterDTO.setAge(actualEntity.getAge());
+        characterDTO.setHeigt(actualEntity.getHeigt());
+        characterDTO.setHistory(actualEntity.getHistory());
+        characterDTO.setMovies(actualEntity.getMovies());
         return characterDTO;
     }
 
@@ -35,6 +34,10 @@ public class CharacterMapper {
         CharacterEntity characterEntity = new CharacterEntity();
         characterEntity.setName(characterDTO.getName());
         characterEntity.setImage(characterDTO.getImage());
+        characterEntity.setAge(characterDTO.getAge());
+        characterEntity.setHeigt(characterDTO.getHeigt());
+        characterEntity.setHistory(characterDTO.getHistory());
+        characterEntity.setMovies(characterDTO.getMovies());
         return characterEntity;
     }
 
@@ -46,7 +49,7 @@ public class CharacterMapper {
         return dtos;
     }*/
 
-    public CharacterDetailsDTO characterDetailsEntity2Dto(CharacterEntity actualEntity) {
+    /*public CharacterDetailsDTO characterDetailsEntity2Dto(CharacterEntity actualEntity) {
         CharacterDetailsDTO characterDetailsDTO = new CharacterDetailsDTO();
         characterDetailsDTO.setId(actualEntity.getId());
         characterDetailsDTO.setName(actualEntity.getName());
@@ -56,10 +59,9 @@ public class CharacterMapper {
         characterDetailsDTO.setHistory(actualEntity.getHistory());
         characterDetailsDTO.setMovies(actualEntity.getMovies());
         return characterDetailsDTO;
-    }
+    }*/
 
-    public CharacterEntity editCharacter(CharacterDetailsDTO characterDTO, CharacterEntity entity) {
-        entity.setId(characterDTO.getId());
+    public CharacterEntity editCharacter(CharacterDTO characterDTO, CharacterEntity entity) {
         entity.setName(characterDTO.getName());
         entity.setImage(characterDTO.getImage());
         entity.setAge(characterDTO.getAge());

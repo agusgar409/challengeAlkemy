@@ -1,6 +1,7 @@
 package com.example.challengealkemy.controller;
 
 
+import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
 import com.example.challengealkemy.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,28 @@ public class GenreController {
     @Autowired
     public GenreService genreService;
 
-    @PostMapping
+    @PostMapping   //funciona
     public ResponseEntity<GenreDTO> save(@RequestBody GenreDTO genreDTO){
         GenreDTO dto = genreService.save(genreDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-    @GetMapping
+    @GetMapping  //funciona
     public ResponseEntity<List<GenreDTO>> getAll(){
         List<GenreDTO> genresDto = genreService.getAll();
-        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(genresDto);
+        return ResponseEntity.status(HttpStatus.OK).body(genresDto);
+    }
+
+    @DeleteMapping("/{id}") //funciona
+    public ResponseEntity<?> deleteGenre(@PathVariable Integer id){
+        genreService.deleteGenre(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GenreDTO> getGenreDetails(@PathVariable Integer id){
+        GenreDTO genreDTO = genreService.getGenre(id);
+        return ResponseEntity.status(HttpStatus.FOUND).body(genreDTO);
     }
 
 }

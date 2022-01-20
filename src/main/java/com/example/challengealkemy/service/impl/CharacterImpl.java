@@ -1,7 +1,6 @@
 package com.example.challengealkemy.service.impl;
 
 import com.example.challengealkemy.dto.CharacterDTO;
-import com.example.challengealkemy.dto.CharacterDetailsDTO;
 import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.mapper.CharacterMapper;
 import com.example.challengealkemy.repository.CharacterRepository;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CharacterImpl implements CharacterService {
@@ -37,16 +35,16 @@ public class CharacterImpl implements CharacterService {
         characterRepository.deleteById(id);
     }
 
-    public CharacterDetailsDTO getCharacter(Integer id) {
+    public CharacterDTO getCharacter(Integer id) {
         CharacterEntity characterEntity = characterRepository.findById(id).get();
-        CharacterDetailsDTO characterDetailsDTOS = characterMapper.characterDetailsEntity2Dto(characterEntity);
-        return characterDetailsDTOS;
+        CharacterDTO characterDTOS = characterMapper.characterEntity2Dto(characterEntity);
+        return characterDTOS;
     }
 
-    public CharacterDetailsDTO editCharacterById(Integer id, CharacterDetailsDTO characterDetailsDTO) {
+    public CharacterDTO editCharacterById(Integer id, CharacterDTO characterDTO) {
         CharacterEntity entity = characterRepository.findById(id).get();
-        CharacterEntity entityEdited = characterMapper.editCharacter(characterDetailsDTO,entity);
+        CharacterEntity entityEdited = characterMapper.editCharacter(characterDTO,entity);
         CharacterEntity characterSaved = characterRepository.save(entityEdited);
-        return characterMapper.characterDetailsEntity2Dto(characterSaved);
+        return characterMapper.characterEntity2Dto(characterSaved);
     }
 }
