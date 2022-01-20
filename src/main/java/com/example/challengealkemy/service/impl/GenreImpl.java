@@ -45,4 +45,11 @@ public class GenreImpl implements GenreService {
         GenreDTO genreDTOS = genreMapper.genreEntity2Dto(genreEntity);
         return genreDTOS;
     }
+
+    public GenreDTO editGenreById(Integer id, CharacterDTO characterDTO) {
+        GenreEntity entity = genreRepository.findById(id).get();
+        GenreEntity entityEdited = genreMapper.editGenre(characterDTO,entity);
+        GenreEntity genreSaved = genreRepository.save(entityEdited);
+        return genreMapper.genreEntity2Dto(genreSaved);
+    }
 }

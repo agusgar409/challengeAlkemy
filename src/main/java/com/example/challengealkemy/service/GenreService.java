@@ -1,5 +1,6 @@
 package com.example.challengealkemy.service;
 
+import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,5 @@ public interface GenreService {
 
     GenreDTO getGenre(Integer id);
 
+    GenreDTO editGenreById(Integer id, CharacterDTO characterDTO);
 }

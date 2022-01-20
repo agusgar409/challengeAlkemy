@@ -43,4 +43,10 @@ public class GenreController {
         return ResponseEntity.status(HttpStatus.FOUND).body(genreDTO);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> characterEdition(@PathVariable Integer id, @RequestBody CharacterDTO characterDTO) {
+        GenreDTO genre = genreService.editGenreById(id,characterDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(genre);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.challengealkemy.mapper;
 
+import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
 import com.example.challengealkemy.entity.GenreEntity;
 import org.springframework.stereotype.Component;
@@ -31,5 +32,11 @@ public class GenreMapper {
             dtos.add(this.genreEntity2Dto(actualEntity));
         }
         return dtos;
+    }
+
+    public GenreEntity editGenre(CharacterDTO characterDTO, GenreEntity entity) {
+        entity.setName(characterDTO.getName());
+        entity.setImage(characterDTO.getImage());
+        return entity;
     }
 }
