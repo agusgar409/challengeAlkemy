@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("movies")
 public class MovieController {
@@ -18,6 +20,12 @@ public class MovieController {
     public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO){
         MovieDTO dto = movieService.save(movieDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MovieDTO>> getCharacters(@PathVariable Integer id){
+        List<MovieDTO> movieDTO = movieService.getAllMovies(id);
+        return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
 
     @GetMapping("/{id}")

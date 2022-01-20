@@ -1,10 +1,15 @@
 package com.example.challengealkemy.mapper;
 
+import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
 import com.example.challengealkemy.dto.MovieDTO;
+import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.GenreEntity;
 import com.example.challengealkemy.entity.MovieEntity;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MovieMapper {
@@ -35,5 +40,13 @@ public class MovieMapper {
         entity.setCharacters(movieDTO.getCharacters());
         entity.setCalification(movieDTO.getCalification());
         return entity;
+    }
+
+    public List<MovieDTO> movieEntityList2DtoList(List<MovieEntity> movieEntities) {
+        List<MovieDTO> dtos = new ArrayList<>();
+        for(MovieEntity actualEntity: movieEntities){
+            dtos.add(this.movieEntity2Dto(actualEntity));
+        }
+        return dtos;
     }
 }

@@ -12,6 +12,8 @@ import com.example.challengealkemy.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieImpl implements MovieService {
 
@@ -42,6 +44,12 @@ public class MovieImpl implements MovieService {
 
     public void deleteMovie(Integer id) {
         movieRepository.deleteById(id);
+    }
+
+    public List<MovieDTO> getAllMovies(Integer id) {
+        List<MovieEntity> movieEntities = movieRepository.findAll();
+        List<MovieDTO> movieDTOS = movieMapper.movieEntityList2DtoList(movieEntities);
+        return movieDTOS;
     }
 
 }
