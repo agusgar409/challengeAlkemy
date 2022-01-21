@@ -1,6 +1,7 @@
 package com.example.challengealkemy.dto;
 
 import com.example.challengealkemy.entity.CharacterEntity;
+import com.example.challengealkemy.entity.GenreEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,6 +25,8 @@ public class MovieDTO {
     private Long calification;
 
     private List<CharacterEntity> characters = new ArrayList<>();
+
+    private GenreEntity genreId;
 
     public void getCreationDate(LocalDate creationDate) {
     }

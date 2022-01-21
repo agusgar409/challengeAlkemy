@@ -14,5 +14,5 @@ public interface MovieService {
 
     void deleteMovie(Integer id);
 
-    List<MovieDTO> getAllMovies(Integer id);
+    List<MovieDTO> getAllMovies();
 }

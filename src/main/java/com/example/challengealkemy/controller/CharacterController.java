@@ -46,4 +46,6 @@ public class CharacterController {
         CharacterDTO character= characterService.editCharacterById(id,characterDTO);
         return ResponseEntity.status(HttpStatus.OK).body(character);
     }
+
+    //TODO: crear paths de busqueda por nombre, edad e idMovie
 }

@@ -16,33 +16,35 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
-    @PostMapping   //funciona
-    public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO){
+    @PostMapping
+    public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO) {
         MovieDTO dto = movieService.save(movieDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieDTO>> getCharacters(@PathVariable Integer id){
-        List<MovieDTO> movieDTO = movieService.getAllMovies(id);
+    public ResponseEntity<List<MovieDTO>> getCharacters() {
+        List<MovieDTO> movieDTO = movieService.getAllMovies();
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDTO> getCharacterDetails(@PathVariable Integer id){
+    public ResponseEntity<MovieDTO> getCharacterDetails(@PathVariable Integer id) {
         MovieDTO movieDTO = movieService.getMovie(id);
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<MovieDTO> movieEdition(@PathVariable Integer id, @RequestBody MovieDTO movieDTO) {
-        MovieDTO movie = movieService.editMovieById(id,movieDTO);
+        MovieDTO movie = movieService.editMovieById(id, movieDTO);
         return ResponseEntity.status(HttpStatus.OK).body(movie);
     }
 
     @DeleteMapping("/{id}")   //funciona
-    public ResponseEntity<?> deleteMovie(@PathVariable Integer id){
+    public ResponseEntity<?> deleteMovie(@PathVariable Integer id) {
         movieService.deleteMovie(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    //TODO: crear paths de busqueda por nombre, id_genero y por ASC y DESC
 }

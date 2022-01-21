@@ -34,9 +34,9 @@ public class GenreMapper {
         return dtos;
     }
 
-    public GenreEntity editGenre(CharacterDTO characterDTO, GenreEntity entity) {
-        entity.setName(characterDTO.getName());
-        entity.setImage(characterDTO.getImage());
+    public GenreEntity editGenre(GenreDTO genreDTO, GenreEntity entity) {
+        entity.setName(genreDTO.getName());
+        entity.setImage(genreDTO.getImage());
         return entity;
     }
 }

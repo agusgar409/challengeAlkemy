@@ -2,6 +2,9 @@ package com.example.challengealkemy.mapper;
 
 import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.entity.CharacterEntity;
+import com.example.challengealkemy.entity.MovieEntity;
+import com.example.challengealkemy.repository.MovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Component
 public class CharacterMapper {
+
+    @Autowired
+    MovieRepository movieRepository;
 
     public List<CharacterDTO> characterEntityList2DtoList(List<CharacterEntity> characterEntities) {
         List<CharacterDTO> dtos = new ArrayList<>();
@@ -26,7 +32,7 @@ public class CharacterMapper {
         characterDTO.setAge(actualEntity.getAge());
         characterDTO.setHeigt(actualEntity.getHeigt());
         characterDTO.setHistory(actualEntity.getHistory());
-        characterDTO.setMovies(actualEntity.getMovies());
+        //characterDTO.setMovies(actualEntity.getMovies());
         return characterDTO;
     }
 
@@ -37,29 +43,17 @@ public class CharacterMapper {
         characterEntity.setAge(characterDTO.getAge());
         characterEntity.setHeigt(characterDTO.getHeigt());
         characterEntity.setHistory(characterDTO.getHistory());
-        characterEntity.setMovies(characterDTO.getMovies());
+        characterEntity.setMovies(this.saveMoviesEntity(characterDTO.getMovies()));
         return characterEntity;
     }
 
-    /*public List<CharacterDetailsDTO> characterDetailsEntityList2DtoList(Optional<CharacterEntity> characterEntities) {
-        List<CharacterDetailsDTO> dtos = new ArrayList<>();
-        for(CharacterEntity actualEntity: characterEntities){
-            dtos.add(this.characterDetailsEntity2Dto(actualEntity));
+    private List<MovieEntity> saveMoviesEntity(List<MovieEntity> movies) {
+        List<MovieEntity> movieEntities = new ArrayList<>();
+        for(MovieEntity movieEntity: movies){
+            movieEntities.add(movieRepository.save(movieEntity));
         }
-        return dtos;
-    }*/
-
-    /*public CharacterDetailsDTO characterDetailsEntity2Dto(CharacterEntity actualEntity) {
-        CharacterDetailsDTO characterDetailsDTO = new CharacterDetailsDTO();
-        characterDetailsDTO.setId(actualEntity.getId());
-        characterDetailsDTO.setName(actualEntity.getName());
-        characterDetailsDTO.setImage(actualEntity.getImage());
-        characterDetailsDTO.setAge(actualEntity.getAge());
-        characterDetailsDTO.setHeigt(actualEntity.getHeigt());
-        characterDetailsDTO.setHistory(actualEntity.getHistory());
-        characterDetailsDTO.setMovies(actualEntity.getMovies());
-        return characterDetailsDTO;
-    }*/
+        return movieEntities;
+    }
 
     public CharacterEntity editCharacter(CharacterDTO characterDTO, CharacterEntity entity) {
         entity.setName(characterDTO.getName());

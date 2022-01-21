@@ -6,6 +6,9 @@ import com.example.challengealkemy.dto.MovieDTO;
 import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.GenreEntity;
 import com.example.challengealkemy.entity.MovieEntity;
+import com.example.challengealkemy.repository.CharacterRepository;
+import com.example.challengealkemy.service.CharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,14 +17,26 @@ import java.util.List;
 @Component
 public class MovieMapper {
 
+    @Autowired
+    CharacterRepository characterRepository;
+
     public MovieEntity movieDto2Entity(MovieDTO movieDTO) {
         MovieEntity entity = new MovieEntity();
         entity.setImage(movieDTO.getImage());
         entity.setCalification(movieDTO.getCalification());
-        entity.setCharacters(movieDTO.getCharacters());
         entity.setCreationDate(movieDTO.getCreationDate());
         entity.setTitle(movieDTO.getTitle());
+        entity.setGenreId(movieDTO.getGenreId());
+        entity.setCharacters(this.saveCharactersEntity(movieDTO.getCharacters()));
         return entity;
+    }
+
+    private List<CharacterEntity> saveCharactersEntity(List<CharacterEntity> characters) {
+        List<CharacterEntity> characterEntities = new ArrayList<>();
+        for(CharacterEntity characterEntity: characters){
+            characterEntities.add(characterRepository.save(characterEntity));
+        }
+        return characterEntities;
     }
 
     public MovieDTO movieEntity2Dto(MovieEntity entitySaved) {
@@ -29,7 +44,8 @@ public class MovieMapper {
         dto.setId(entitySaved.getId());
         dto.setImage(entitySaved.getImage());
         dto.setTitle(entitySaved.getTitle());
-        dto.getCreationDate(entitySaved.getCreationDate());
+        dto.setCreationDate(entitySaved.getCreationDate());
+        dto.setCalification(entitySaved.getCalification());
         return dto;
     }
 

@@ -16,5 +16,5 @@ public interface GenreService {
 
     GenreDTO getGenre(Integer id);
 
-    GenreDTO editGenreById(Integer id, CharacterDTO characterDTO);
+    GenreDTO editGenreById(Integer id, GenreDTO genreDTO);
 }

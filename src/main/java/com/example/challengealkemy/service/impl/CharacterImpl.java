@@ -24,8 +24,8 @@ public class CharacterImpl implements CharacterService {
         return characterDTOS;
     }
 
-
     public CharacterDTO saveCharacter(CharacterDTO characterDTO) {
+        // TODO: arreglar guardado en tabla movies_characters
         CharacterEntity characterEntity = characterMapper.characterDto2Entity(characterDTO);
         CharacterEntity characterSaved = characterRepository.save(characterEntity);
         return characterMapper.characterEntity2Dto(characterSaved);

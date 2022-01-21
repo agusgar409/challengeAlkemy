@@ -37,15 +37,15 @@ public class GenreController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")  //funciona
     public ResponseEntity<GenreDTO> getGenreDetails(@PathVariable Integer id){
         GenreDTO genreDTO = genreService.getGenre(id);
         return ResponseEntity.status(HttpStatus.FOUND).body(genreDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> characterEdition(@PathVariable Integer id, @RequestBody CharacterDTO characterDTO) {
-        GenreDTO genre = genreService.editGenreById(id,characterDTO);
+    @PutMapping("/{id}")   //funciona
+    public ResponseEntity<?> genreEdition(@PathVariable Integer id, @RequestBody GenreDTO genreDTO) {
+        GenreDTO genre = genreService.editGenreById(id,genreDTO);
         return ResponseEntity.status(HttpStatus.OK).body(genre);
     }
 

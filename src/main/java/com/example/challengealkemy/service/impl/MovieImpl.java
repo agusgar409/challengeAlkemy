@@ -46,6 +46,12 @@ public class MovieImpl implements MovieService {
         movieRepository.deleteById(id);
     }
 
+    public List<MovieDTO> getAllMovies() {
+        List<MovieEntity> movieEntities = movieRepository.findAll();
+        List<MovieDTO> movieDTOList = movieMapper.movieEntityList2DtoList(movieEntities);
+        return movieDTOList;
+    }
+
     public List<MovieDTO> getAllMovies(Integer id) {
         List<MovieEntity> movieEntities = movieRepository.findAll();
         List<MovieDTO> movieDTOS = movieMapper.movieEntityList2DtoList(movieEntities);
