@@ -1,5 +1,6 @@
 package com.example.challengealkemy.service;
 
+import com.example.challengealkemy.dto.MovieBasicDTO;
 import com.example.challengealkemy.dto.MovieDTO;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface MovieService {
 
     void deleteMovie(Integer id);
 
-    List<MovieDTO> getAllMovies();
+    List<MovieBasicDTO> getAllMovies();
 }

@@ -20,14 +20,11 @@ public class MovieDTO {
 
     private String title;
 
-    private LocalDate creationDate;
+    private String creationDate;
 
     private Long calification;
 
-    private List<CharacterEntity> characters = new ArrayList<>();
+    private List<CharacterDTO> characters = new ArrayList<>();
 
     private GenreEntity genreId;
-
-    public void getCreationDate(LocalDate creationDate) {
-    }
 }

@@ -27,7 +27,7 @@ public class MovieEntity {
     private String title;
 
     @Column(name = "creation_date")
-    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    @DateTimeFormat(pattern = "yyy/mm/dd")
     private LocalDate creationDate;
 
     private Long calification;

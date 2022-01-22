@@ -1,5 +1,6 @@
 package com.example.challengealkemy.controller;
 
+import com.example.challengealkemy.dto.CharacterBasicDTO;
 import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class CharacterController {
     }
 
     @GetMapping   //funciona
-    public ResponseEntity<List<CharacterDTO>> getAllCharacters(){
-        List<CharacterDTO> characterDTOS = characterService.getAllCharacters();
-        return ResponseEntity.status(HttpStatus.FOUND).body(characterDTOS);
+    public ResponseEntity<List<CharacterBasicDTO>> getAllCharacters(){
+        List<CharacterBasicDTO> characterBasicDTOS = characterService.getAllCharacters();
+        return ResponseEntity.status(HttpStatus.FOUND).body(characterBasicDTOS);
     }
 
     @DeleteMapping("/{id}")   //funciona

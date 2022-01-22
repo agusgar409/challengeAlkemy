@@ -1,11 +1,12 @@
 package com.example.challengealkemy.service;
 
+import com.example.challengealkemy.dto.CharacterBasicDTO;
 import com.example.challengealkemy.dto.CharacterDTO;
 
 import java.util.List;
 
 public interface CharacterService {
-    List<CharacterDTO> getAllCharacters();
+    List<CharacterBasicDTO> getAllCharacters();
 
     CharacterDTO saveCharacter(CharacterDTO characterDTO);
 

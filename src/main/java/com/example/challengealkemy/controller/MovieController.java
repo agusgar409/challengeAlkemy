@@ -1,5 +1,6 @@
 package com.example.challengealkemy.controller;
 
+import com.example.challengealkemy.dto.MovieBasicDTO;
 import com.example.challengealkemy.dto.MovieDTO;
 import com.example.challengealkemy.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieDTO>> getCharacters() {
-        List<MovieDTO> movieDTO = movieService.getAllMovies();
+    public ResponseEntity<List<MovieBasicDTO>> getMovies() {
+        List<MovieBasicDTO> movieDTO = movieService.getAllMovies();
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDTO> getCharacterDetails(@PathVariable Integer id) {
+    public ResponseEntity<MovieDTO> getMoviesDetails(@PathVariable Integer id) {
         MovieDTO movieDTO = movieService.getMovie(id);
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
