@@ -16,4 +16,6 @@ public interface MovieService {
     void deleteMovie(Integer id);
 
     List<MovieBasicDTO> getAllMovies();
+
+    List<MovieDTO> getByFilters(String title, Integer idGenre, String order);
 }

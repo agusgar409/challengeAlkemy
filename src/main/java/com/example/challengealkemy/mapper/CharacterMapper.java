@@ -57,14 +57,15 @@ public class CharacterMapper {
 
     public CharacterEntity characterDto2Entity(CharacterDTO characterDTO, boolean loadMovies) {
         CharacterEntity characterEntity = new CharacterEntity();
+        characterEntity.setId(characterEntity.getId());
         characterEntity.setName(characterDTO.getName());
         characterEntity.setImage(characterDTO.getImage());
         characterEntity.setAge(characterDTO.getAge());
         characterEntity.setHeigt(characterDTO.getHeigt());
         characterEntity.setHistory(characterDTO.getHistory());
         if(loadMovies){
-            List<MovieEntity> entityList = movieMapper.movieDtoList2EntityList(characterDTO.getMovies(), false);
-            characterEntity.setMovies(entityList);
+            List<MovieEntity> movieEntityList = movieMapper.movieDtoList2EntityList(characterDTO.getMovies(), false);
+            characterEntity.setMovies(movieEntityList);
         }
         return characterEntity;
     }

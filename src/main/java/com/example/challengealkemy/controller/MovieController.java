@@ -47,5 +47,15 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping
+    public ResponseEntity<List<MovieDTO>> getMoviesByFilters(
+                                    @RequestParam(required = false) String title,
+                                    @RequestParam(required = false) Integer idGenre,
+                                    @RequestParam(required = false, defaultValue = "ASC") String order){
+
+        List<MovieDTO> movieDTOList = movieService.getByFilters(title, idGenre, order);
+        return ResponseEntity.status(HttpStatus.FOUND).body(movieDTOList);
+    }
+
     //TODO: crear paths de busqueda por nombre, id_genero y por ASC y DESC
 }
