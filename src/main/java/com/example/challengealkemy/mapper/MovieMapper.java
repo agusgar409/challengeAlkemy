@@ -47,8 +47,9 @@ public class MovieMapper {
         dto.setId(entitySaved.getId());
         dto.setImage(entitySaved.getImage());
         dto.setTitle(entitySaved.getTitle());
-        //dto.setCreationDate(entitySaved.getCreationDate().toString());
+        dto.setCreationDate(entitySaved.getCreationDate().toString());
         dto.setCalification(entitySaved.getCalification());
+        dto.setGenreId(entitySaved.getGenreId());
         if(loadCharacters) {
             List<CharacterDTO> characterDTOS = characterMapper.characterEntityList2DtoList(entitySaved.getCharacters(),false);
             dto.setCharacters(characterDTOS);
@@ -95,7 +96,7 @@ public class MovieMapper {
 
     private MovieBasicDTO movieEntity2DtoBasic(MovieEntity actualEntity) {
         MovieBasicDTO movieBasicDTO = new MovieBasicDTO();
-        //movieBasicDTO.setCreationDate(actualEntity.getCreationDate().toString());
+        movieBasicDTO.setCreationDate(actualEntity.getCreationDate().toString());
         movieBasicDTO.setImage(actualEntity.getImage());
         movieBasicDTO.setTitle(actualEntity.getTitle());
         return  movieBasicDTO;

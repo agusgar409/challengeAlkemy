@@ -23,12 +23,6 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-    /*@GetMapping
-    public ResponseEntity<List<MovieBasicDTO>> getMovies() {
-        List<MovieBasicDTO> movieDTO = movieService.getAllMovies();
-        return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
-    }*/
-
     @GetMapping("/{id}")
     public ResponseEntity<MovieDTO> getMoviesDetails(@PathVariable Integer id) {
         MovieDTO movieDTO = movieService.getMovie(id);

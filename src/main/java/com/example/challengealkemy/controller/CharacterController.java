@@ -21,16 +21,11 @@ public class CharacterController {
     CharacterService characterService;
 
     @PostMapping   //funciona
+    //TODO: carga 2 veces fechade creacion y id genero
     public ResponseEntity<CharacterDTO> saveCharacter(@RequestBody CharacterDTO characterDTO){
         CharacterDTO character = characterService.saveCharacter(characterDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(character);
     }
-
-    /*@GetMapping   //funciona
-    public ResponseEntity<List<CharacterBasicDTO>> getAllCharacters(){
-        List<CharacterBasicDTO> characterBasicDTOS = characterService.getAllCharacters();
-        return ResponseEntity.status(HttpStatus.FOUND).body(characterBasicDTOS);
-    }*/
 
     @DeleteMapping("/{id}")   //funciona
     public ResponseEntity<?> deleteCharacter(@PathVariable Integer id){

@@ -57,7 +57,7 @@ public class MovieImpl implements MovieService {
             List<MovieBasicDTO> movieBasicDTOList = movieMapper.movieEntityList2DtoBasicList(movieEntityList);
             return movieBasicDTOList;
         }
-        List<MovieDTO> movieDTOList = movieMapper.movieEntityList2DtoList(movieEntityList,false);
+        List<MovieDTO> movieDTOList = movieMapper.movieEntityList2DtoList(movieEntityList,true);
         return movieDTOList;
     }
 
