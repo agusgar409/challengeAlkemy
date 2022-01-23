@@ -23,11 +23,11 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<MovieBasicDTO>> getMovies() {
         List<MovieBasicDTO> movieDTO = movieService.getAllMovies();
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
-    }
+    }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<MovieDTO> getMoviesDetails(@PathVariable Integer id) {
@@ -48,14 +48,12 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MovieDTO>> getMoviesByFilters(
+    public ResponseEntity<?> getMoviesByFilters(
                                     @RequestParam(required = false) String title,
                                     @RequestParam(required = false) Integer idGenre,
                                     @RequestParam(required = false, defaultValue = "ASC") String order){
 
-        List<MovieDTO> movieDTOList = movieService.getByFilters(title, idGenre, order);
+        List<?> movieDTOList = movieService.getByFilters(title, idGenre, order);
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTOList);
     }
-
-    //TODO: crear paths de busqueda por nombre, id_genero y por ASC y DESC
 }

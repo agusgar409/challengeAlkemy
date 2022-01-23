@@ -2,6 +2,7 @@ package com.example.challengealkemy.controller;
 
 import com.example.challengealkemy.dto.CharacterBasicDTO;
 import com.example.challengealkemy.dto.CharacterDTO;
+import com.example.challengealkemy.dto.MovieDTO;
 import com.example.challengealkemy.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("characters")
@@ -24,11 +26,11 @@ public class CharacterController {
         return ResponseEntity.status(HttpStatus.CREATED).body(character);
     }
 
-    @GetMapping   //funciona
+    /*@GetMapping   //funciona
     public ResponseEntity<List<CharacterBasicDTO>> getAllCharacters(){
         List<CharacterBasicDTO> characterBasicDTOS = characterService.getAllCharacters();
         return ResponseEntity.status(HttpStatus.FOUND).body(characterBasicDTOS);
-    }
+    }*/
 
     @DeleteMapping("/{id}")   //funciona
     public ResponseEntity<?> deleteCharacter(@PathVariable Integer id){
@@ -48,5 +50,14 @@ public class CharacterController {
         return ResponseEntity.status(HttpStatus.OK).body(character);
     }
 
-    //TODO: crear paths de busqueda por nombre, edad e idMovie
+    @GetMapping
+    public ResponseEntity<?> getCharactersByFilters(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) Double heigt,
+            @RequestParam(required = false) Set<Integer> movie_id){
+
+        List<?> characterDTOList = characterService.getByFilters(name, age, heigt,movie_id);
+        return ResponseEntity.status(HttpStatus.FOUND).body(characterDTOList);
+    }
 }

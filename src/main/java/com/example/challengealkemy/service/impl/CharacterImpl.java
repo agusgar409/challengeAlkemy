@@ -1,15 +1,16 @@
 package com.example.challengealkemy.service.impl;
 
-import com.example.challengealkemy.dto.CharacterBasicDTO;
-import com.example.challengealkemy.dto.CharacterDTO;
+import com.example.challengealkemy.dto.*;
 import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.mapper.CharacterMapper;
 import com.example.challengealkemy.repository.CharacterRepository;
+import com.example.challengealkemy.repository.specification.CharacterSpecification;
 import com.example.challengealkemy.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CharacterImpl implements CharacterService {
@@ -18,6 +19,8 @@ public class CharacterImpl implements CharacterService {
     CharacterRepository characterRepository;
     @Autowired
     CharacterMapper characterMapper;
+    @Autowired
+    CharacterSpecification characterSpecification;
 
     public List<CharacterBasicDTO> getAllCharacters() {
         List<CharacterEntity> characterEntities = characterRepository.findAll();
@@ -26,7 +29,7 @@ public class CharacterImpl implements CharacterService {
     }
 
     public CharacterDTO saveCharacter(CharacterDTO characterDTO) {
-        // TODO: arreglar guardado en tabla movies_characters
+        // TODO: arreglar guardado en tabla movies_characters, no guarda al cargar personaje con pelicula
         CharacterEntity characterEntity = characterMapper.characterDto2Entity(characterDTO, true);
         CharacterEntity characterSaved = characterRepository.save(characterEntity);
         return characterMapper.characterEntity2Dto(characterSaved, true);
@@ -47,5 +50,16 @@ public class CharacterImpl implements CharacterService {
         CharacterEntity entityEdited = characterMapper.editCharacter(characterDTO,entity, true);
         CharacterEntity characterSaved = characterRepository.save(entityEdited);
         return characterMapper.characterEntity2Dto(characterSaved, true);
+    }
+
+    public List<?> getByFilters(String name, Integer age, Double heigt, Set<Integer> idMovies) {
+        CharacterFilterDTO characterFilterDTO = new CharacterFilterDTO(name,age,heigt,idMovies);
+        List<CharacterEntity> characterEntityList = characterRepository.findAll(characterSpecification.getByFilters(characterFilterDTO));
+        if(characterFilterDTO.haveParams()){
+            List<CharacterBasicDTO> characterBasicDTOList = characterMapper.characterEntityList2DtoBasicList(characterEntityList);
+            return characterBasicDTOList;
+        }
+        List<CharacterDTO> characterDTOList = characterMapper.characterEntityList2DtoList(characterEntityList,false);
+        return characterDTOList;
     }
 }

@@ -17,5 +17,5 @@ public interface MovieService {
 
     List<MovieBasicDTO> getAllMovies();
 
-    List<MovieDTO> getByFilters(String title, Integer idGenre, String order);
+    List<?> getByFilters(String title, Integer idGenre, String order);
 }

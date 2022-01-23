@@ -23,4 +23,11 @@ public class MovieFilterDTO {
     public boolean isDESC(){
         return this.order.compareToIgnoreCase("DESC") == 0;
     }
+
+    public boolean haveParams() {
+        if(title == null && idGenre == null){
+            return true;
+        }
+        return false;
+    }
 }
