@@ -2,10 +2,12 @@ package com.example.challengealkemy.service.impl;
 
 import com.example.challengealkemy.dto.*;
 import com.example.challengealkemy.entity.CharacterEntity;
+import com.example.challengealkemy.exeption.ParamNotFound;
 import com.example.challengealkemy.mapper.CharacterMapper;
 import com.example.challengealkemy.repository.CharacterRepository;
 import com.example.challengealkemy.repository.specification.CharacterSpecification;
 import com.example.challengealkemy.service.CharacterService;
+import net.bytebuddy.description.method.ParameterList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class CharacterImpl implements CharacterService {
+public class CharacterServiceImpl implements CharacterService {
 
     @Autowired
     CharacterRepository characterRepository;
@@ -24,6 +26,9 @@ public class CharacterImpl implements CharacterService {
 
     public List<CharacterBasicDTO> getAllCharacters() {
         List<CharacterEntity> characterEntities = characterRepository.findAll();
+        if(characterEntities.isEmpty()){
+            throw new ParamNotFound("Characters not found");
+        }
         List<CharacterBasicDTO> characterBasicDTOS = characterMapper.characterEntityList2DtoBasicList(characterEntities);
         return characterBasicDTOS;
     }

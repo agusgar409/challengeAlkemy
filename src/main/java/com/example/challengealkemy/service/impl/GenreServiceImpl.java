@@ -1,8 +1,6 @@
 package com.example.challengealkemy.service.impl;
 
-import com.example.challengealkemy.dto.CharacterDTO;
 import com.example.challengealkemy.dto.GenreDTO;
-import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.GenreEntity;
 import com.example.challengealkemy.mapper.GenreMapper;
 import com.example.challengealkemy.repository.GenreRepository;
@@ -13,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GenreImpl implements GenreService {
+public class GenreServiceImpl implements GenreService {
 
     @Autowired
     GenreMapper genreMapper;
