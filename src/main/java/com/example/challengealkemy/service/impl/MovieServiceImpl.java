@@ -2,6 +2,7 @@ package com.example.challengealkemy.service.impl;
 
 import com.example.challengealkemy.dto.*;
 import com.example.challengealkemy.entity.MovieEntity;
+import com.example.challengealkemy.exeption.ParamNotFound;
 import com.example.challengealkemy.mapper.MovieMapper;
 import com.example.challengealkemy.repository.MovieRepository;
 import com.example.challengealkemy.repository.specification.MovieSpecification;
@@ -22,14 +23,16 @@ public class MovieServiceImpl implements MovieService {
     MovieMapper movieMapper;
 
     public MovieDTO save(MovieDTO movieDTO){
+        if(movieDTO == null)
+            throw new ParamNotFound("Movie DTO is empty");
         MovieEntity entity = movieMapper.movieDto2Entity(movieDTO,true);
         MovieEntity entitySaved = movieRepository.save(entity);
         return movieMapper.movieEntity2Dto(entitySaved, true);
     }
 
     public MovieDTO getMovie(Integer id) {
-        MovieEntity characterEntity = movieRepository.findById(id).get();
-        MovieDTO movieDTO = movieMapper.movieEntity2Dto(characterEntity, true);
+        MovieEntity movieEntity = movieRepository.findById(id).get();
+        MovieDTO movieDTO = movieMapper.movieEntity2Dto(movieEntity, true);
         return movieDTO;
     }
 
@@ -46,6 +49,8 @@ public class MovieServiceImpl implements MovieService {
 
     public List<MovieBasicDTO> getAllMovies() {
         List<MovieEntity> movieEntities = movieRepository.findAll();
+        if(movieEntities.isEmpty())
+            throw new ParamNotFound("Movies Entity not found");
         List<MovieBasicDTO> movieDTOList = movieMapper.movieEntityList2DtoBasicList(movieEntities);
         return movieDTOList;
     }
