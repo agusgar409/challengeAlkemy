@@ -43,4 +43,8 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private List<CharacterEntity> characters = new ArrayList<>();
+
+    public void addNewCharacters(List<CharacterEntity> characterEntities) {
+        characters.addAll(characterEntities);
+    }
 }

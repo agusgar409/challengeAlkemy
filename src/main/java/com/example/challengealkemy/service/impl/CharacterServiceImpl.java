@@ -60,7 +60,7 @@ public class CharacterServiceImpl implements CharacterService {
     public List<?> getByFilters(String name, Integer age, Double heigt, Set<Integer> idMovies) {
         CharacterFilterDTO characterFilterDTO = new CharacterFilterDTO(name,age,heigt,idMovies);
         List<CharacterEntity> characterEntityList = characterRepository.findAll(characterSpecification.getByFilters(characterFilterDTO));
-        if(characterFilterDTO.haveParams()){
+        if(characterFilterDTO.doNotHaveParams()){
             List<CharacterBasicDTO> characterBasicDTOList = characterMapper.characterEntityList2DtoBasicList(characterEntityList);
             return characterBasicDTOList;
         }

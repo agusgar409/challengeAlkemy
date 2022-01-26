@@ -22,7 +22,7 @@ public class CharacterFilterDTO {
         this.heigt = heigt;
     }
 
-    public boolean haveParams() {
+    public boolean doNotHaveParams() {
         if(name == null && age == null && heigt == null && movieEntities == null){
             return true;
         }
