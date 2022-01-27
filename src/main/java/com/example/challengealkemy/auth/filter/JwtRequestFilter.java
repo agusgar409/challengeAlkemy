@@ -3,42 +3,50 @@ package com.example.challengealkemy.auth.filter;
 import com.example.challengealkemy.auth.service.JwtUtil;
 import com.example.challengealkemy.auth.service.UserDetailsCostomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class JwtRequestFilter {
+@Component
+public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     UserDetailsCostomService userDetailsCostomService;
 
     @Autowired
     JwtUtil jwtUtils;
+
     @Autowired
-    AutehenticationManager autehenticationManager;
+    AuthenticationManager autehenticationManager;
 
     @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, Filter chain){
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
 
-        String userName = null;
+        String username = null;
         String jwt = null;
 
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             jwt = authorizationHeader.substring(7);
-            userName = jwtUtils.extractUsername(jwt);
+            username = jwtUtils.extractUsername(jwt);
         }
 
-        if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
 
-            UserDetails userDetails = userDetailsCostomService.loadUserByUsername(userName);
+            UserDetails userDetails = userDetailsCostomService.loadUserByUsername(username);
 
             if(jwtUtils.validateToken(jwt, userDetails)){
                 UsernamePasswordAuthenticationToken authenticationFilter =
@@ -49,6 +57,6 @@ public class JwtRequestFilter {
             }
 
         }
-        chain.doFilter(request,response);
+        filterChain.doFilter(request,response);
     }
 }
