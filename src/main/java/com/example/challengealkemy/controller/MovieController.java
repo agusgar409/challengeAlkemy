@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDTO> getMoviesDetails(@PathVariable Integer id) {
+    public ResponseEntity<MovieDTO> getMoviesDetails(@Valid @PathVariable Integer id) {
         MovieDTO movieDTO = movieService.getMovie(id);
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTO);
     }
