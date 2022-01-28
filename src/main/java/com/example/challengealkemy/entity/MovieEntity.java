@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class MovieEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
 
+    @Min(value = 1,message = "the min of calification is 1") @Max(value = 5,message = "the Max value is 5 of calification")
     private Long calification;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -43,4 +46,8 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private List<CharacterEntity> characters = new ArrayList<>();
+
+    public void addNewCharacters(List<CharacterEntity> characterEntities) {
+        characters.addAll(characterEntities);
+    }
 }

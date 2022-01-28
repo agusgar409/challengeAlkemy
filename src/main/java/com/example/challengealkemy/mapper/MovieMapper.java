@@ -5,6 +5,7 @@ import com.example.challengealkemy.dto.MovieBasicDTO;
 import com.example.challengealkemy.dto.MovieDTO;
 import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.MovieEntity;
+import com.example.challengealkemy.service.impl.String2DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,8 @@ public class MovieMapper {
 
     @Autowired
     CharacterMapper characterMapper;
+    @Autowired
+    String2DateUtil string2DateUtil;
 
     public MovieEntity movieDto2Entity(MovieDTO movieDTO, boolean loadCharacters) {
         MovieEntity entity = new MovieEntity();
@@ -25,7 +28,7 @@ public class MovieMapper {
         entity.setImage(movieDTO.getImage());
         entity.setCalification(movieDTO.getCalification());
 
-        entity.setCreationDate(this.string2LocalDate(movieDTO.getCreationDate()));
+        entity.setCreationDate(string2DateUtil.changeFormat(movieDTO.getCreationDate()));
 
         entity.setTitle(movieDTO.getTitle());
         entity.setGenreId(movieDTO.getGenreId());
@@ -34,12 +37,6 @@ public class MovieMapper {
             entity.setCharacters(characterEntityList);
         }
         return entity;
-    }
-
-    private LocalDate string2LocalDate(String creationDate) {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(creationDate,dateFormatter);
-        return date;
     }
 
     public MovieDTO movieEntity2Dto(MovieEntity entitySaved, boolean loadCharacters) {
@@ -60,10 +57,10 @@ public class MovieMapper {
     public MovieEntity editMovie(MovieDTO movieDTO, MovieEntity entity, boolean loadCharacters) {
         entity.setTitle(movieDTO.getTitle());
         entity.setImage(movieDTO.getImage());
-        entity.setCreationDate(this.string2LocalDate(movieDTO.getCreationDate()));
+        entity.setCreationDate(string2DateUtil.changeFormat(movieDTO.getCreationDate()));
         if(loadCharacters){
             List<CharacterEntity> characterEntities = characterMapper.characterDtoList2EntityList(movieDTO.getCharacters(),false);
-            entity.setCharacters(characterEntities);
+            entity.addNewCharacters(characterEntities);
         }
         entity.setCalification(movieDTO.getCalification());
         return entity;

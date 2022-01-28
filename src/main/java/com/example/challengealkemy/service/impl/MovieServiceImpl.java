@@ -58,7 +58,7 @@ public class MovieServiceImpl implements MovieService {
     public List<?> getByFilters(String title, Integer idGenre, String order) {
         MovieFilterDTO movieFilterDTO = new MovieFilterDTO(title,idGenre,order);
         List<MovieEntity> movieEntityList = movieRepository.findAll(movieSpecification.getByFilters(movieFilterDTO));
-        if(movieFilterDTO.haveParams()){
+        if(movieFilterDTO.doNotHaveParams()){
             List<MovieBasicDTO> movieBasicDTOList = movieMapper.movieEntityList2DtoBasicList(movieEntityList);
             return movieBasicDTOList;
         }
