@@ -28,7 +28,8 @@ public class UserAuthController {
 
     @Autowired
     UserDetailsCostomService userDetailsCostomService;
-
+    @Autowired
+    JwtUtil jwtUtil;
 
     @PostMapping("/singup")
     public ResponseEntity<Object> singUp(@Valid @RequestBody UserDTO userDTO) throws Exception{
@@ -38,7 +39,7 @@ public class UserAuthController {
 
     @PostMapping("/singin")
     public ResponseEntity<AuthenticationResponse> singIn(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
-        String jwt = userDetailsCostomService.authenticateUser(authenticationRequest);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        UserDetails userDetails = userDetailsCostomService.authenticateUser(authenticationRequest);
+        return ResponseEntity.ok(new AuthenticationResponse(jwtUtil.generateToken(userDetails)));
     }
 }

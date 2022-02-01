@@ -31,10 +31,16 @@ public class EmailServiceImpl implements EmailService {
             return;
         }
 
-        String apiKey = environment.getProperty("EMAIL_API_KEY");
-
         Email fromEmail = new Email(emailSender);
         Email toEmail = new Email(username);
+
+        creationOfMail(fromEmail,toEmail);
+    }
+
+    private void creationOfMail(Email fromEmail, Email toEmail){
+
+        String apiKey = environment.getProperty("EMAIL_API_KEY");
+
         Content content = new Content(
                 "text/plain","Bienvenido/a a Disney!!"
         );
@@ -43,15 +49,21 @@ public class EmailServiceImpl implements EmailService {
         Mail mail = new Mail(fromEmail,subject,toEmail,content);
         SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
+
+        functionalCheck(mail,sg,request);
+    }
+
+    private void functionalCheck(Mail mail, SendGrid sendGrid, Request request){
         try{
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            Response response = sg.api(request);
+            Response response = sendGrid.api(request);
 
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
+            //comprobar con una libreria log4j para sacar estos printl
+            //System.out.println(response.getStatusCode());
+            //System.out.println(response.getBody());
+            //System.out.println(response.getHeaders());
 
         } catch (IOException e) {
             System.out.println("error trying to send mail");

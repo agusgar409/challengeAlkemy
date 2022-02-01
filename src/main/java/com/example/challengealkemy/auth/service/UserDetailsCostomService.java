@@ -51,9 +51,7 @@ public class UserDetailsCostomService implements UserDetailsService {
         return userEntity != null;
     }
 
-
-    //deberia ir aca?-----------------------------------------------------------------------------------
-    public String authenticateUser(AuthenticationRequest authenticationRequest) throws Exception {
+    public UserDetails authenticateUser(AuthenticationRequest authenticationRequest) throws Exception {
         UserDetails userDetails;
         try{
             Authentication authentication = authenticationManager.authenticate(
@@ -64,8 +62,8 @@ public class UserDetailsCostomService implements UserDetailsService {
             throw new Exception("Incorrect username or password",ex);
         }
 
-        String jwt = jwtUtil.generateToken(userDetails);
-        return jwt;
+        return userDetails;
+        //String jwt = jwtUtil.generateToken(userDetails);
+        //return jwt;
     }
-    //deberia ir aca?-----------------------------------------------------------------------------------
 }
