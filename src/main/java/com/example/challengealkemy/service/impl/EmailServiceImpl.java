@@ -11,29 +11,30 @@ import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-
+@Service
 public class EmailServiceImpl implements EmailService {
     @Autowired
     Environment environment;
 
-    @Value("$(challengealkemy.movies.email.sender)")
+    @Value("${challengeAlkemy.movies.email.sender}")
     private String emailSender;
 
-    @Value("$(challengealkemy.movies.email.enable)")
+    @Value("${challengeAlkemy.movies.email.enable}")
     private boolean enable;
 
     public void sendWelcomeEmailTo(String username) {
         if(!enable){
             return;
         }
-                                                //preguntar al prfe como agregar el codigo de send grid a la palabra
+
         String apiKey = environment.getProperty("EMAIL_API_KEY");
 
-        Email fromEmail = new Email();
-        Email toEmail = new Email();
+        Email fromEmail = new Email(emailSender);
+        Email toEmail = new Email(username);
         Content content = new Content(
                 "text/plain","Bienvenido/a a Disney!!"
         );

@@ -43,6 +43,7 @@ public class UserDetailsCostomService implements UserDetailsService {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
+        //TODO: que se chequee que ya existe un usuario
         userEntity = userRepository.save(userEntity);
         if(userEntity != null){
             emailService.sendWelcomeEmailTo(userEntity.getUsername());
