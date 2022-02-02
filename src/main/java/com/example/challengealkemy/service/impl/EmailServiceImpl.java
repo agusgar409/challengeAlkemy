@@ -58,7 +58,7 @@ public class EmailServiceImpl implements EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            Response response = sendGrid.api(request);
+            //Response response = sendGrid.api(request);
 
             //comprobar con una libreria log4j para sacar estos printl
             //System.out.println(response.getStatusCode());

@@ -62,6 +62,7 @@ public class MovieServiceImpl implements MovieService {
             List<MovieBasicDTO> movieBasicDTOList = movieMapper.movieEntityList2DtoBasicList(movieEntityList);
             return movieBasicDTOList;
         }
+        //TODO : muestra 2 veces la fecha de creacion
         List<MovieDTO> movieDTOList = movieMapper.movieEntityList2DtoList(movieEntityList,true);
         return movieDTOList;
     }

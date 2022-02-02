@@ -21,7 +21,7 @@ public class CharacterController {
     CharacterService characterService;
 
     @PostMapping   //funciona
-    //TODO: carga 2 veces fechade creacion y id genero
+    //TODO: carga 2 veces fechade creacion e id genero
     public ResponseEntity<CharacterDTO> saveCharacter(@RequestBody CharacterDTO characterDTO){
         CharacterDTO character = characterService.saveCharacter(characterDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(character);
