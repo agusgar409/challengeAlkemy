@@ -35,7 +35,7 @@ public class CharacterSpecification {
             //filtro por id de peliculas
             //TODO : error al tratar de ingresar a la tabla de ManyToMany
             if(!CollectionUtils.isEmpty(characterFilterDTO.getMovieEntities())){
-                Join<MovieEntity,CharacterEntity> join = root.join("movie_character", JoinType.INNER);
+                Join<MovieEntity,CharacterEntity> join = root.join("movies", JoinType.INNER);
                 Expression<String> movieId = join.get("id");
                 predicateList.add(movieId.in(characterFilterDTO.getMovieEntities()));
             }
