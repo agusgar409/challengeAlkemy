@@ -51,4 +51,16 @@ public class MovieController {
         List<?> movieDTOList = movieService.getByFilters(title, idGenre, order);
         return ResponseEntity.status(HttpStatus.FOUND).body(movieDTOList);
     }
+
+    @PostMapping("/{id}/idCharacter/{idCharacter}")
+    public ResponseEntity<Void> addCharacter(@PathVariable Integer id, @PathVariable Integer idCharacter){
+        movieService.addCharacter(id, idCharacter);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}/idCharacter/{idCharacter}")
+    public ResponseEntity<Void> removeCharacter(@PathVariable Integer id, @PathVariable Integer idCharacter){
+        movieService.removeCharacter(id, idCharacter);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

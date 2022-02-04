@@ -50,4 +50,22 @@ public class MovieEntity {
     public void addNewCharacters(List<CharacterEntity> characterEntities) {
         characters.addAll(characterEntities);
     }
+
+    public void removeCharacter(CharacterEntity characterEntity) {
+        characters.remove(characterEntity);
+    }
+
+    public void addCharacter(CharacterEntity characterEntity) {
+        characters.add(characterEntity);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null)
+            return false;
+        if(getClass() != obj.getClass())
+            return false;
+        final MovieEntity other = (MovieEntity) obj;
+        return other.id == this.id;
+    }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Characters")
@@ -33,4 +34,12 @@ public class CharacterEntity {
 
     @ManyToMany(mappedBy = "characters")
     private List<MovieEntity> movies = new ArrayList<>();
+
+    public void addMovie(MovieEntity movieEntity) {
+        movies.add(movieEntity);
+    }
+
+    public void removeMovie(MovieEntity movieEntity){
+        movies.remove(movieEntity);
+    }
 }

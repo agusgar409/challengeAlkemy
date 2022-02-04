@@ -38,12 +38,12 @@ public class MovieSpecification {
             query.distinct(true);
 
             //filtro por orden ascendente o descendente
-            /*String orderByDateOfCreation = "creation_date";
+            String orderByDateOfCreation = "title";
             query.orderBy(
                     movieFilterDTO.isASC() ?
                             criteriaBuilder.asc(root.get(orderByDateOfCreation)) :
                             criteriaBuilder.desc(root.get(orderByDateOfCreation))
-            );*/
+            );
 
             //filtro por idGenre
             if(!(movieFilterDTO.getIdGenre() == null)){
