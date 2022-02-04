@@ -43,6 +43,7 @@ public class UserDetailsCostomService implements UserDetailsService {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setPassword(userDTO.getPassword());
+        //TODO: que se chequee que ya existe un usuario
         userEntity = userRepository.save(userEntity);
         if(userEntity != null){
             emailService.sendWelcomeEmailTo(userEntity.getUsername());
@@ -50,9 +51,7 @@ public class UserDetailsCostomService implements UserDetailsService {
         return userEntity != null;
     }
 
-
-    //deberia ir aca?-----------------------------------------------------------------------------------
-    public String authenticateUser(AuthenticationRequest authenticationRequest) throws Exception {
+    public UserDetails authenticateUser(AuthenticationRequest authenticationRequest) throws Exception {
         UserDetails userDetails;
         try{
             Authentication authentication = authenticationManager.authenticate(
@@ -63,8 +62,8 @@ public class UserDetailsCostomService implements UserDetailsService {
             throw new Exception("Incorrect username or password",ex);
         }
 
-        String jwt = jwtUtil.generateToken(userDetails);
-        return jwt;
+        return userDetails;
+        //String jwt = jwtUtil.generateToken(userDetails);
+        //return jwt;
     }
-    //deberia ir aca?-----------------------------------------------------------------------------------
 }

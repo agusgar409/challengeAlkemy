@@ -80,7 +80,6 @@ public class MovieMapper {
             entities.add(this.movieDto2Entity(actualDTO, loadMovies));
         }
         return entities;
-
     }
 
     public List<MovieBasicDTO> movieEntityList2DtoBasicList(List<MovieEntity> movieEntities) {

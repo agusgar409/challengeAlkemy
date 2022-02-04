@@ -15,28 +15,27 @@ public class MovieDTO {
 
     private String title;
 
-    //si se pone en camelCase no toma ni el dia ni el genero id
-    private String creation_date;
+    private String creationDate;
 
     private Long calification;
 
     private List<CharacterDTO> characters = new ArrayList<>();
 
-    private GenreEntity genre_id;
+    private GenreEntity genreId;
 
     public String getCreationDate() {
-        return creation_date;
+        return creationDate;
     }
 
     public void setCreationDate(String creation_date) {
-        this.creation_date = creation_date;
+        this.creationDate = creation_date;
     }
 
     public GenreEntity getGenreId() {
-        return genre_id;
+        return genreId;
     }
 
-    public void setGenreId(GenreEntity genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreId(GenreEntity genreId) {
+        this.genreId = genreId;
     }
 }

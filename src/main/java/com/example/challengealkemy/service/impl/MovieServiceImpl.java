@@ -1,11 +1,13 @@
 package com.example.challengealkemy.service.impl;
 
 import com.example.challengealkemy.dto.*;
+import com.example.challengealkemy.entity.CharacterEntity;
 import com.example.challengealkemy.entity.MovieEntity;
 import com.example.challengealkemy.exeption.ParamNotFound;
 import com.example.challengealkemy.mapper.MovieMapper;
 import com.example.challengealkemy.repository.MovieRepository;
 import com.example.challengealkemy.repository.specification.MovieSpecification;
+import com.example.challengealkemy.service.CharacterService;
 import com.example.challengealkemy.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class MovieServiceImpl implements MovieService {
     MovieSpecification movieSpecification;
     @Autowired
     MovieMapper movieMapper;
+    @Autowired
+    CharacterService characterService;
 
     public MovieDTO save(MovieDTO movieDTO){
         if(movieDTO == null)
@@ -37,7 +41,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     public MovieDTO editMovieById(Integer id, MovieDTO movieDTO) {
-        MovieEntity entity = movieRepository.findById(id).get();
+        MovieEntity entity = movieRepository.getById(id);
         MovieEntity entityEdited = movieMapper.editMovie(movieDTO,entity,true);
         MovieEntity characterSaved = movieRepository.save(entityEdited);
         return movieMapper.movieEntity2Dto(characterSaved, true);
@@ -65,6 +69,30 @@ public class MovieServiceImpl implements MovieService {
         List<MovieDTO> movieDTOList = movieMapper.movieEntityList2DtoList(movieEntityList,true);
         return movieDTOList;
     }
+
+    public MovieEntity getEntityById(Integer idMovie) {
+        MovieEntity movieEntity = movieRepository.getById(idMovie);
+        return movieEntity;
+    }
+
+    @Override
+    public void addCharacter(Integer id, Integer idCharacter) {
+        CharacterEntity characterEntity = characterService.getEntityById(idCharacter);
+        MovieEntity movie = movieRepository.getById(id);
+        movie.getCharacters().size();
+        movie.addCharacter(characterEntity);
+        movieRepository.save(movie);
+    }
+
+    @Override
+    public void removeCharacter(Integer id, Integer idCharacter) {
+        CharacterEntity characterEntity = characterService.getEntityById(idCharacter);
+        MovieEntity movie = movieRepository.getById(id);
+        movie.getCharacters().size();
+        movie.removeCharacter(characterEntity);
+        movieRepository.save(movie);
+    }
+
 
 }
 

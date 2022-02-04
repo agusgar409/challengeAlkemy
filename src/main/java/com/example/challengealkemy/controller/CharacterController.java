@@ -21,14 +21,13 @@ public class CharacterController {
     CharacterService characterService;
 
     @PostMapping   //funciona
-    //TODO: carga 2 veces fechade creacion y id genero
     public ResponseEntity<CharacterDTO> saveCharacter(@RequestBody CharacterDTO characterDTO){
         CharacterDTO character = characterService.saveCharacter(characterDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(character);
     }
 
-    @DeleteMapping("/{id}")   //funciona
-    public ResponseEntity<?> deleteCharacter(@PathVariable Integer id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCharacter(@PathVariable Integer id){
         characterService.deleteCharacter(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -40,7 +39,7 @@ public class CharacterController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> characterEdition(@PathVariable Integer id, @RequestBody CharacterDTO characterDTO) {
+    public ResponseEntity<CharacterDTO> characterEdition(@PathVariable Integer id, @RequestBody CharacterDTO characterDTO) {
         CharacterDTO character= characterService.editCharacterById(id,characterDTO);
         return ResponseEntity.status(HttpStatus.OK).body(character);
     }
@@ -54,5 +53,17 @@ public class CharacterController {
 
         List<?> characterDTOList = characterService.getByFilters(name, age, heigt,movie_id);
         return ResponseEntity.status(HttpStatus.FOUND).body(characterDTOList);
+    }
+
+    @PostMapping("/{id}/idMovie/{idMovie}")
+    public ResponseEntity<Void> addMovie(@PathVariable Integer id, @PathVariable Integer idMovie){
+        characterService.addMovie(id, idMovie);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}/idMovie/{idMovie}")
+    public ResponseEntity<Void> removeMovie(@PathVariable Integer id, @PathVariable Integer idMovie){
+        characterService.removeMovie(id, idMovie);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

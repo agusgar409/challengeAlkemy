@@ -38,16 +38,16 @@ public class MovieSpecification {
             query.distinct(true);
 
             //filtro por orden ascendente o descendente
-            /*String orderByDateOfCreation = "creation_date";
+            String orderByDateOfCreation = "title";
             query.orderBy(
                     movieFilterDTO.isASC() ?
                             criteriaBuilder.asc(root.get(orderByDateOfCreation)) :
                             criteriaBuilder.desc(root.get(orderByDateOfCreation))
-            );*/
+            );
 
             //filtro por idGenre
             if(!(movieFilterDTO.getIdGenre() == null)){
-                Join<MovieEntity, GenreEntity> join = root.join("genre_id", JoinType.INNER);
+                Join<MovieEntity,GenreEntity> join = root.join("genreId", JoinType.INNER);
                 Expression<MovieEntity> movieEntityExpression = join.get("id");
                 predicateList.add(movieEntityExpression.in(movieFilterDTO.getIdGenre()));
             }
