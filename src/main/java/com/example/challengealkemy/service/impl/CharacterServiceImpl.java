@@ -50,13 +50,13 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     public CharacterDTO getCharacter(Integer id) {
-        CharacterEntity characterEntity = characterRepository.findById(id).get();
+        CharacterEntity characterEntity = characterRepository.getById(id);
         CharacterDTO characterDTOS = characterMapper.characterEntity2Dto(characterEntity, true);
         return characterDTOS;
     }
 
     public CharacterDTO editCharacterById(Integer id, CharacterDTO characterDTO) {
-        CharacterEntity entity = characterRepository.findById(id).get();
+        CharacterEntity entity = characterRepository.getById(id);
         CharacterEntity entityEdited = characterMapper.editCharacter(characterDTO,entity, true);
         CharacterEntity characterSaved = characterRepository.save(entityEdited);
         return characterMapper.characterEntity2Dto(characterSaved, true);

@@ -24,5 +24,5 @@ public interface CharacterService {
 
     void removeMovie(Integer id, Integer idMovie);
 
-    CharacterEntity getEntityById(Integer idMovie);
+    CharacterEntity getEntityById(Integer idCharacter);
 }
