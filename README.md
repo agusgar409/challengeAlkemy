@@ -1,3 +1,3 @@
 # challengeAlkemy
 
-Posible solucion al challenge de Alquemy en lenguaje Java
+Solution to the Alkemy API Challenge about the Disney Universe.
